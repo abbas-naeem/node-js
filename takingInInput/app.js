@@ -6,6 +6,13 @@ const yargs = require("yargs")
 // Create add command
 yargs.command({
     command: 'add',
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        }
+    },
     describe: 'Add a new note',
     handler: function (argv) {
         console.log("Adding a new note!")
@@ -31,18 +38,9 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Listing a note',
-    builder: {
-      title: {
-          describe: "Note title",
-          demandOption: true,
-          type: "string"
-      }
-    },
     handler: function (argv) {
         console.log("Listing the note", argv)
     }
 })
 
-
-console.log(yargs.argv)
-
+yargs.parse()
